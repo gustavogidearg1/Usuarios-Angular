@@ -41,7 +41,7 @@ get email() { return this.angForm.get('email'); }
 get password() { return this.angForm.get('password'); }
 
 registrarse(){
-  this.router.navigate(['home']);
+  this.router.navigate(['registration']);
 }
 
 }
