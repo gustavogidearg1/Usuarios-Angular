@@ -1,0 +1,86 @@
+<div class="container-fluid" *ngIf="logoutbtn">
+  <div   class="row">
+    <div  class="col-3 " id="ColIzq" >
+
+      <form [formGroup]="clienteForm" (submit)="Agregar()">
+
+        <div class="form-group" >
+
+          <input title="idClient" type="number" formControlName="idCliente" class="form-control" type="hidden"  id="idCliente" name="idCliente" >
+        </div>
+
+        <div class="form-group">
+          <label for="ClienteSIW">ClienteSIW</label>
+          <input type="text" formControlName="ClienteSIW" class="form-control"  id="ClienteSIW" name="ClienteSIW" minlength="4" required>
+        </div>
+        <div class="errorUsuarios" *ngIf="clienteForm.invalid && clienteForm.touched">
+          <span *ngIf="clienteForm.controls['ClienteSIW'].errors?.['minlength']">Cliente debe tener al menos un 4 caracteres<br></span>
+          <span *ngIf="clienteForm.controls['ClienteSIW'].errors?.['required']">El campo Cliente es requerido<br></span>
+                 </div>
+
+        <div class="form-group">
+          <label for="Domicilio">Domicilio</label>
+          <input type="email" formControlName="Domicilio" class="form-control" id="Domicilio" name="Domicilio" required >
+        </div>
+
+      <div class="errorUsuarios" *ngIf="clienteForm.invalid && clienteForm.touched">
+        <span *ngIf="clienteForm.controls['Domicilio'].errors?.['required']">El campo Domicilio es requerido<br></span>
+          </div>
+
+        <div class="form-group">
+          <label for="Localidad">Localidad</label>
+          <select formControlName="Localidad" class="form-control" name="Localidad" size="1" id="Localidad"  required>
+            <option *ngFor = "let item of itemLocalidad" value="{{item.ID_LOCALIDAD}}" >{{item.DESCRIPCION}}</option>
+          </select>
+        </div>
+        <div class="errorUsuarios" *ngIf="clienteForm.invalid && clienteForm.touched">
+          <span *ngIf="clienteForm.controls['Localidad'].errors?.['required']">El campo Localidad es requerido<br></span>
+        </div>
+             <div *ngIf="!ShowData" class="md-4">
+                <button class="btn btn-primary" [disabled]="clienteForm.invalid" type="submit">Cargar</button>
+
+               </div>
+
+
+        </form>
+        <div class="mt-2">
+          <button *ngIf="ShowData" class="btn btn-success" (click)="ModificarCliente()">Modificar</button>
+         </div>
+
+        <div>
+
+          </div>
+    </div>
+
+    <div class="col-9 CentroHome" id="ColCentral">
+
+      <table class = "table">
+        <thead>
+            <tr>
+                <th>idCliente</th>
+                <th>ClienteSIW</th>
+                <th>Domicilio</th>
+                <th>Localidad</th>
+                <th colspan="3">Opciones</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor = "let item of itemCliente">
+                <td>{{item.idCliente}}</td>
+                <td>{{item.ClienteSIW}}</td>
+                <td>{{item.Domicilio}}</td>
+                <td>{{item.Localidad}}-{{item.DESCRIPCION}}  </td>
+
+ <td><button class="btn btn-success" (click)="editar(item)" type="button">Editar</button></td>
+<td><button class="btn btn-danger" (click)="eliminar(item.idCliente)" type="button">Eliminar</button></td>
+
+            </tr>
+
+        </tbody>
+    </table>
+
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,252 @@
+<div class="container">
+  <h5>Facturacion</h5>
+  <form [formGroup]="factForm" (ngSubmit)="postdata()" >
+    <div class="row">
+
+      <div class="col">
+        <div class="form-group">
+          <label for="fecha">Fecha<span>*</span></label>
+          <input type="date" formControlName="fecha" class="form-control" id="fecha" name="fecha" required />
+        <div class="errorUsuarios" *ngIf="factForm.invalid && factForm.touched">
+          <span *ngIf="factForm.controls['fecha'].errors?.['required']" >Debe ingresar una fecha<br></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="form-group">
+        <label for="cliente">Cliente<span>*</span></label>
+        <select formControlName="cliente" class="form-control" name="cliente" size="1" id="cliente"  required>
+          <option *ngFor = "let itemcliente of clientes" value={{itemcliente.idCliente}} >{{itemcliente.ClienteSIW}}</option>
+        </select>
+      <div class="errorUsuarios" *ngIf="factForm.invalid && factForm.touched">
+        <span *ngIf="factForm.controls['cliente'].errors?.['required']" >El campo es requerido<br></span>
+      </div>
+    </div>
+    </div>
+
+    <div class="col">
+    <div class="form-group">
+      <label for="pago">Forma de pago</label>
+      <select formControlName="pago" class="form-control" name="pago" size="1" id="pago"  required>
+        <option value="Contado" selected>Contado</option>
+        <option value="CuentaCorriente" >Cuenta Corriente</option>
+        <option value="30Dias" >30 Dias</option>
+        <option value="60Dias" >60 Dias</option>
+        <option value="Adelantado" >Adelantado</option>
+      </select>
+  </div>
+</div>
+
+<div class="col">
+  <div class="form-group">
+    <label for="entrega">Forma de Entrega<span>*</span></label>
+    <select formControlName="entrega" class="form-control" name="entrega" size="1" id="entrega"  required>
+      <option *ngFor = "let itemEntrega of entregas" value="{{itemEntrega.idEntrega}}" >{{itemEntrega.FormaEntrega}}</option>
+    </select>
+  <div class="errorUsuarios" *ngIf="factForm.invalid && factForm.touched">
+    <span *ngIf="factForm.controls['entrega'].errors?.['required']" >El campo es requerido<br></span>
+  </div>
+</div>
+</div>
+
+<div class="row-2">
+  <div class="col">
+    <div class="form-group">
+      <input type="text" formControlName="Observacion" class="form-control" id="Observacion" name="Observacion" placeholder="Observacion" />
+  </div>
+  </div>
+</div>
+
+  <!-- FinFila -->
+</div>
+
+<br>
+<div class="row">
+  <h5>Item de facturacion</h5>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Producto</th>
+        <th scope="col">Cantidad</th>
+        <th scope="col">Precio $</th>
+        <th scope="col">Total $</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+
+        <th scope="row">1</th>
+        <td>
+          <div class="col-xxl-auto">
+            <div class="form-group">
+              <textarea  class="form-control" formControlName="Producto1" name="Producto1" id="Producto1" cols="60" rows="2" title="Producto1"></textarea>
+          </div>
+        </div>
+
+      </td>
+        <td>
+         <div class="col-4">
+          <div class="form-group">
+            <input title="Cantidad1" type="number" formControlName="Cantidad1" class="form-control" id="Cantidad1" name="Cantidad1" />
+        </div>
+      </div>
+    </td>
+
+        <td>
+          <div class="col-4">
+            <div class="form-group">
+              <input type="number" formControlName="Precio1" class="form-control" id="Precio1" name="Precio1" placeholder="$" />
+          </div>
+        </div>
+
+        </td>
+        <td>
+          <div class="col-4">
+            <div class="form-group">
+              <input type="number" formControlName="Total1" class="form-control" id="Total1" name="Total1" value="{{factForm.value.Cantidad1*factForm.value.Precio1}}" placeholder="$"/>
+          </div>
+        </div>
+
+        </td>
+
+      </tr>
+       <tr>
+
+        <th scope="row">2</th>
+        <td>
+          <div class="col-xxl-auto">
+            <div class="form-group">
+              <textarea  class="form-control" formControlName="Producto2" name="Producto2" id="Producto2" cols="60" rows="2" title="Producto2"></textarea>
+          </div>
+        </div>
+
+      </td>
+        <td>
+         <div class="col-4">
+          <div class="form-group">
+            <input title="Cantidad2" type="number" formControlName="Cantidad2" class="form-control" id="Cantidad2" name="Cantidad2" />
+        </div>
+      </div>
+    </td>
+
+        <td>
+          <div class="col-4">
+            <div class="form-group">
+              <input type="number" formControlName="Precio2" class="form-control" id="Precio2" name="Precio2" placeholder="$"/>
+          </div>
+        </div>
+
+        </td>
+        <td>
+          <div class="col-4">
+            <div class="form-group">
+              <input type="number" formControlName="Total2" class="form-control" id="Total2" name="Total2" value="{{factForm.value.Cantidad2*factForm.value.Precio2}}" placeholder="$" />
+          </div>
+        </div>
+
+        </td>
+
+      </tr>
+
+      <tr>
+
+        <th scope="row">3</th>
+        <td>
+          <div class="col-auto">
+            <div class="form-group">
+              <textarea  class="form-control" formControlName="Producto3" name="Producto3" id="Producto3" cols="60" rows="2" title="Producto3"></textarea>
+          </div>
+        </div>
+
+      </td>
+        <td>
+         <div class="col-4">
+          <div class="form-group">
+            <input title="Cantidad3" type="number" formControlName="Cantidad3" class="form-control" id="Cantidad3" name="Cantidad3" />
+        </div>
+      </div>
+    </td>
+
+        <td>
+          <div class="col-4">
+            <div class="form-group">
+              <input type="number" formControlName="Precio3" class="form-control" id="Precio3" name="Precio3" placeholder="$"/>
+          </div>
+        </div>
+
+        </td>
+        <td>
+          <div class="col-4">
+            <div class="form-group">
+              <input type="number" formControlName="Total3" class="form-control" id="Total3" name="Total3" value="{{factForm.value.Cantidad3*factForm.value.Precio3}}" placeholder="$" />
+          </div>
+        </div>
+
+        </td>
+
+      </tr>
+<tr>
+      <th scope="row">4</th>
+      <td>
+        <div class="col-xxl-auto">
+          <div class="form-group">
+            <textarea  class="form-control" formControlName="Producto4" name="Producto4" id="Producto4" cols="60" rows="2" title="Producto4"></textarea>
+        </div>
+      </div>
+
+    </td>
+      <td>
+       <div class="col-4">
+        <div class="form-group">
+          <input title="Cantidad4" type="number" formControlName="Cantidad4" class="form-control" id="Cantidad4" name="Cantidad4" />
+      </div>
+    </div>
+  </td>
+
+      <td>
+        <div class="col-4">
+          <div class="form-group">
+            <input type="number" formControlName="Precio4" class="form-control" id="Precio4" name="Precio4" placeholder="$" />
+        </div>
+      </div>
+
+      </td>
+      <td>
+        <div class="col-4">
+          <div class="form-group">
+            <input type="number" formControlName="Total4" class="form-control" id="Total4" name="Total4" value="{{factForm.value.Cantidad4*factForm.value.Precio4}}" placeholder="$" />
+        </div>
+      </div>
+
+      </td>
+
+    </tr>
+
+    <tr>
+      <td> <div class="col-4"><div class="form-group"></div></div></td>
+      <td> <div class="col-4"><div class="form-group"></div></div></td>
+      <td> <div class="col-4"><div class="form-group"></div></div></td>
+      <td> <div class="col-4"><div class="form-group"></div></div></td>
+      <td>
+        <div class="col-6">
+          <div class="form-group">
+            <input type="number" formControlName="TotalGeneral" class="form-control" id="TotalGeneral" name="TotalGeneral" value="{{factForm.value.Cantidad4*factForm.value.Precio4+factForm.value.Cantidad3*factForm.value.Precio3+factForm.value.Cantidad2*factForm.value.Precio2+factForm.value.Cantidad1*factForm.value.Precio1}}" placeholder="$" />
+        </div>
+      </div>
+
+      </td>
+    </tr>
+
+    </tbody>
+  </table>
+
+</div>
+<br>
+        <button type="submit" class="btn btn-success btn-lg btn-block">Facturar</button>
+
+      </form>
+</div>
+

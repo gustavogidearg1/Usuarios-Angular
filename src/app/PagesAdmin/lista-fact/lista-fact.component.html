@@ -1,0 +1,130 @@
+<div class="container-fluid">
+  <!-- Inicio Formulario Edicion Factura -->
+  <div *ngIf="ShowData" class="col-9 CentroHome" id="ColCentral">
+    <form [formGroup]="usuaForm" >
+      <div class="row">
+
+        <div class="col">
+      <div class="form-group">
+        <label for="idFact">idFact</label>
+        <input type="number" formControlName="idFact" class="form-control" type="hidden"  id="idFact" name="idFact" >
+        <label for="Fecha">Fecha</label>
+        <input type="date" formControlName="Fecha" class="form-control"  id="Fecha" name="Fecha">
+      </div>
+    </div>
+
+
+  <div class="col">
+    <div class="form-group">
+      <label for="Cliente">Cliente</label>
+      <select formControlName="Cliente" class="form-control" name="Cliente" size="1" id="Cliente"  >
+        <option *ngFor = "let itemcliente of clientes" value={{itemcliente.idCliente}} >{{itemcliente.ClienteSIW}}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="form-group">
+      <label for="Pago">Forma de pago</label>
+      <select formControlName="Pago" class="form-control" name="Pago" size="1" id="Pago"  >
+        <option value="Contado" selected>Contado</option>
+        <option value="CuentaCorriente" >Cuenta Corriente</option>
+        <option value="30Dias" >30 Dias</option>
+        <option value="60Dias" >60 Dias</option>
+        <option value="Adelantado" >Adelantado</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="form-group">
+      <label for="Entrega">Forma de Entrega<span>*</span></label>
+      <select formControlName="Entrega" class="form-control" name="Entrega" size="1" id="Entrega"  required>
+        <option *ngFor = "let itemEntrega of entregas" value="{{itemEntrega.idEntrega}}" >{{itemEntrega.FormaEntrega}}</option>
+      </select>
+    </div>
+  </div>
+
+</div>
+    </form>
+    <div class="mt-2">
+
+      <button class="btn btn-info text-white float-right" (click)="Modificar()">Modificar</button>
+     </div>
+    </div>
+</div>
+  <!-- Fin Formulario Edicion Factura -->
+
+    <!-- Inicio Listado Facturas -->
+  <div class="container-fluid">
+  <div *ngIf="!ShowData" class="col-9 CentroHome" id="ColCentral">
+    <form [formGroup]="usuaForm" >
+    <table class = "table">
+      <thead>
+          <tr>
+              <th>idFact</th>
+              <th>Fecha</th>
+              <th>Cliente</th>
+              <th>Pago</th>
+              <th>Entrega</th>
+              <th colspan="3">Opciones</th>
+
+          </tr>
+      </thead>
+      <tbody *ngFor = "let item of ListaFactura ">
+          <tr >
+              <td>{{item.idFact}}</td>
+              <td>{{item.Fecha}}</td>
+              <td>{{item.Cliente}}-{{item.ClienteSIW}}</td>
+              <td>{{item.Pago}}</td>
+              <td>{{item.Entrega}}-{{item.FormaEntrega}}</td>
+
+
+<td><button class="btn btn-success" (click)="editar(item)" type="button">Editar</button></td>
+<td><button class="btn btn-danger" (click)="eliminar(item.idFact)" type="button">Eliminar</button></td>
+  </tr>
+ <tr *ngIf="(item.Producto1)">
+    <td ></td>
+    <td colspan="2">{{item.Producto1}}</td>
+    <td>{{item.Cantidad1}}</td>
+    <td>${{item.Precio1}}</td>
+    <td>${{item.Cantidad1*item.Precio1}}</td>
+  </tr>
+  <tr *ngIf="(item.Producto2)">
+    <td ></td>
+    <td colspan="2">{{item.Producto2}}</td>
+    <td>{{item.Cantidad2}}</td>
+    <td>${{item.Precio2}}</td>
+    <td>${{item.Cantidad2*item.Precio2}}</td>
+  </tr>
+
+  <tr *ngIf="(item.Producto3)">
+    <td ></td>
+    <td colspan="2">{{item.Producto3}}</td>
+    <td>{{item.Cantidad3}}</td>
+    <td>${{item.Precio3}}</td>
+    <td>${{item.Cantidad3*item.Precio3}}</td>
+  </tr>
+
+  <tr *ngIf="(item.Producto4)">
+    <td ></td>
+    <td colspan="2">{{item.Producto4}}</td>
+    <td>{{item.Cantidad4}}</td>
+    <td>${{item.Precio4}}</td>
+    <td>${{item.Cantidad4*item.Precio4}}</td>
+  </tr>
+<tr>
+  <td colspan="5"></td>
+  <td>
+   <strong> $ {{item.Cantidad4*item.Precio4+item.Cantidad3*item.Precio3+item.Cantidad2*item.Precio2+item.Cantidad1*item.Precio1}}
+  </strong>
+  </td>
+</tr>
+
+      </tbody>
+  </table>
+
+   </form>
+  </div>
+ <!-- Final Listado Facturas -->
+</div>
