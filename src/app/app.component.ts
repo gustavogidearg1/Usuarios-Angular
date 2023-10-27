@@ -48,7 +48,7 @@ export class AppComponent implements OnInit {
   logout()
   {
   this.dataService.deleteToken();
-  window.location.href = window.location.href;
+  window.location.href = window.location.href="https://planidear.com.ar/prueba-FullStack/";
   }
 
   ngOnInit() {
@@ -66,7 +66,7 @@ this.dataService.userlogin(angForm1.value.email,angForm1.value.password)
 .pipe(first())
 .subscribe(
 data => {
-const redirect = this.dataService.redirectUrl ? this.dataService.redirectUrl : '/dashboard';
+const redirect = this.dataService.redirectUrl ? this.dataService.redirectUrl : '/home';
 this.router.navigate([redirect]);
 this.dataService.getToken( );
 this.dataService.getToken( );
