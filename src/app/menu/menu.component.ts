@@ -46,8 +46,8 @@ export class MenuComponent implements OnInit {
     logout()
     {
     this.dataService.deleteToken();
-    window.location.href = window.location.href="https://planidear.com.ar/prueba-FullStack/";
     //window.location.href = window.location.href="https://planidear.com.ar/prueba-FullStack/";
+    window.location.href = window.location.href;
     }
 
 
