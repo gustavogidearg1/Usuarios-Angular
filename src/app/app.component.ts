@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, Renderer2, ViewContainerRef } from '@angular/core';
 import { UsuarioservService } from './Service/Usuarioserv.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Users } from './users';
@@ -6,19 +6,25 @@ import { Router } from '@angular/router';
 import { first } from 'rxjs';
 
 
+
+declare var $: any;
+declare var jquery: any;
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnDestroy,  OnInit {
 @Input() nombre: string = this.dataService.getToken();
 
   title = 'menulateral';
   loginbtn:boolean;
   logoutbtn:boolean;
   angForm: FormGroup;
-  constructor(private fb: FormBuilder,private dataService: UsuarioservService,private router:Router) {
+  constructor(private fb: FormBuilder,private dataService: UsuarioservService,private router:Router,
+    el: ElementRef, vcr: ViewContainerRef, renderer: Renderer2
+    ) {
   dataService.getLoggedInName.subscribe(name => this.changeName(name));
   this.angForm = this.fb.group({
     email: ['', [Validators.required,Validators.minLength(1), Validators.email]],
@@ -38,6 +44,9 @@ export class AppComponent implements OnInit {
 
   }
 
+  }
+  ngOnDestroy(): void {
+    throw new Error('Method not implemented.');
   }
 
   private changeName(name: boolean): void {
@@ -77,6 +86,11 @@ alert("User name or password is incorrect")
 }
 get email() { return this.angForm.get('email'); }
 get password() { return this.angForm.get('password'); }
+
+MostrarImagen(){
+  console.log("boton presiones");
+  $('.displayTitle').slideToggle();
+};
 
   }
 

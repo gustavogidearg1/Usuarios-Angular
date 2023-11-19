@@ -18,6 +18,11 @@ import { UsuarioAdminComponent } from './PagesAdmin/usuario-admin/usuario-admin.
 import { ClientesComponent } from './PagesAdmin/clientes/clientes.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import { DataTablesModule } from 'angular-datatables';
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -43,7 +48,8 @@ HttpClientModule,
 ReactiveFormsModule,
 NgbModule,
 NgbPaginationModule,
- NgbAlertModule
+ NgbAlertModule,
+ DataTablesModule
 
   ],
   providers: [FacturasServiceService],

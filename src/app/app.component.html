@@ -23,6 +23,8 @@
             alt="..."
           />-->
 
+
+
           <img
           src="../assets/img/logo.jpg"
           class="rounded float-start clLogoIc"
@@ -64,6 +66,29 @@
     <!-- pagina central *ngIf="loginbtn" -->
     <div class="col">
       <section class="vh-100 sectionPag">
+        <button (click)="MostrarImagen()" type="button" class="btn btn-primary">Prueba jquery</button>
+
+        <h1  class="displayTitle" style="display: none;">Prueba jquery</h1>
+
+        <div class="container">
+
+          <table datatable [dtOptions]="dtOptions" class="table table-bordered table-sm">
+                <thead>
+                    <tr>
+                        <td>id</td>
+                        <td>CodCmg</td>
+                        <td>Cantidad</td>
+                        <td>ObsInv</td>
+                         <td>Fecha</td>
+                         <td></td>
+
+                    </tr>
+                </thead>
+                <tbody id="tb_inventario">
+
+                </tbody>
+            </table>
+        </div>
 
         <router-outlet></router-outlet>
       </section>
